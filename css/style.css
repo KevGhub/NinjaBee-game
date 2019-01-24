@@ -1,0 +1,128 @@
+.start {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start-screen {
+  background-image: url(../images/STARTpage.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1000px;
+  height: 500px;
+  align-items: flex-end;
+  justify-content: center;
+  display: flex;
+}
+
+.GameOver-screen {
+  background-image: url(../images/STARTpage.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1000px;
+  height: 500px;
+  align-items: flex-end;
+  justify-content: center;
+  display: flex;
+}
+
+.btn-start {
+  margin-bottom: 50px;
+  font-size: 30px;
+  width: 200px;
+  height: 70px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* CANVAS*/
+/* 
+.ninja-bees {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1200px;
+  height: 550px;
+  justify-content: center;
+  display: flex;
+}
+
+.game-over {
+}
+*/
+
+#ruche {
+  background: url("../images/ruche.png");
+  position: absolute;
+  display: flex;
+  background-size: contain;
+
+  width: 200px;
+  height: 200px;
+  margin-left: 180px;
+  margin-top: 50px;
+  animation: bounce 0.25s ease infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    top: -60px;
+  }
+  to {
+    top: -50px;
+  }
+}
+
+#TitlePage {
+  background: url("../images/Title-Ninja-Bee.png");
+  position: absolute;
+  display: flex;
+  background-size: contain;
+
+  width: 600px;
+  height: 100px;
+  margin-left: 350px;
+  margin-top: 80px;
+  animation: fontbulger 1s infinite;
+}
+
+@keyframes fontbulger {
+  0% {
+    background-size: 590px;
+  }
+  30% {
+    background-size: 595px;
+  }
+  100% {
+    background-size: 600px;
+  }
+}
+
+#automat-Bees {
+  background: url("../images/BeeLtoR.png");
+  position: absolute;
+  display: flex;
+  background-size: contain;
+
+  width: 30px;
+  height: 30px;
+  margin-left: 600px;
+  margin-top: 250px;
+  animation: move 4s steps(800) infinite;
+}
+
+@keyframes move {
+  from {
+    left: 38px;
+    top: 60px;
+  }
+  to {
+    left: 1000px;
+    top: 600px;
+  }
+}
