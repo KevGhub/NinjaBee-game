@@ -1,16 +1,18 @@
 .start {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
+
 .background-screen {
-  background-image: url(../images/backgroundGame.jpg);
+  background-image: url(./images/backgroundGame.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 1280px;
-  height: 800px;
+  width: 1200px;
+  height: 600px;
   align-items: flex-end;
   justify-content: center;
   display: flex;
@@ -22,10 +24,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   width: 1000px;
-  height: 500px;
-  align-items: flex-end;
+  height: 600px;
   justify-content: center;
   display: flex;
+  align-items: center;
 }
 
 .GameOver-screen {
@@ -57,39 +59,24 @@
   font-size: 30px;
   width: 200px;
   height: 70px;
+  box-shadow: 3px 3px 11px black;
 }
 
 .hidden {
   display: none;
 }
 
-/* CANVAS*/
-/* 
-.ninja-bees {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 1280px;
-  height: 800px;
-  justify-content: center;
-  display: flex;
-}
-
-.game-over {
-}
-*/
+/* .game-over {
+} */
 
 #ruche {
   background: url("../images/ruche.png");
-  position: absolute;
-  display: flex;
   background-size: contain;
-
-  width: 200px;
-  height: 200px;
-  margin-left: 180px;
-  margin-top: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
   animation: bounce 0.25s ease infinite alternate;
+  width: 100%;
+  height: 150px;
 }
 
 @keyframes bounce {
@@ -101,28 +88,32 @@
   }
 }
 
+.top {
+  display: flex;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
 #TitlePage {
   background: url("../images/Title-Ninja-Bee.png");
-  position: absolute;
-  display: flex;
   background-size: contain;
-
-  width: 600px;
-  height: 100px;
-  margin-left: 350px;
-  margin-top: 80px;
+  background-repeat: no-repeat;
+  background-position: center;
   animation: fontbulger 1s infinite;
 }
 
 @keyframes fontbulger {
   0% {
-    background-size: 590px;
+    background-size: 90%;
   }
   30% {
-    background-size: 595px;
+    background-size: 95%;
   }
   100% {
-    background-size: 600px;
+    background-size: 100%;
   }
 }
 
@@ -130,23 +121,51 @@
   background: url("../images/BeeLtoR.png");
   position: absolute;
   display: flex;
+  opacity: 0.5;
   background-size: contain;
 
   width: 30px;
   height: 30px;
   margin-left: 600px;
   margin-top: 250px;
-  animation: move 4s steps(800) infinite;
+  animation: move 3s steps(1000) infinite;
 }
 
+#automat-Bees1 {
+  background: url("../images/BeeLtoR.png");
+  position: absolute;
+  opacity: 0.5;
+  display: flex;
+  background-size: contain;
+
+  width: 30px;
+  height: 30px;
+  margin-left: 600px;
+  margin-top: 250px;
+  animation: move 5s steps(1000) infinite;
+}
+
+#automat-Bees3 {
+  background: url("../images/BeeLtoR.png");
+  position: absolute;
+  display: flex;
+  background-size: contain;
+  opacity: 0.5;
+
+  width: 30px;
+  height: 30px;
+  margin-left: 600px;
+  margin-top: 250px;
+  animation: move 8s steps(1000) infinite;
+}
 @keyframes move {
   from {
-    left: 38px;
+    left: -400px;
     top: 60px;
   }
   to {
-    left: 1000px;
-    top: 600px;
+    left: 500px;
+    top: 200px;
   }
 }
 
@@ -155,5 +174,8 @@
 }
 
 .ninja-bees {
-  background-image: url(../images/backgroundGame.jpg);
+  background-image: url(../images/backgroundGame.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -32,8 +32,10 @@ class Bee {
     if (ninja.health > 0) {
       this.x -= 2.5;
       this.y += 0.5;
-    }
 
+      // if (BeeX < 500) {
+      //   BeeX = 1000;
+    }
     ctx.drawImage(BeeImg, this.x, this.y, this.width, this.height);
 
     // if (this.isTouched) {
@@ -51,16 +53,16 @@ class Bee {
 
 //-------- OPtion 2 movement :
 
-var time = new Date();
-this.angle +=
-  ((2 * Math.PI) / 500000) * time.getSeconds() +
-  (Math.PI / 15000000) * time.getMilliseconds();
-ctx.save();
-ctx.rotate(this.angle);
+// var time = new Date();
+// this.angle +=
+//   ((2 * Math.PI) / 500000) * time.getSeconds() +
+//   (Math.PI / 15000000) * time.getMilliseconds();
+// ctx.save();
+// ctx.rotate(this.angle);
 
-ctx.drawImage(BeeImg, (this.x -= 2), this.y, 50, 50);
+// ctx.drawImage(BeeImg, (this.x -= 2), this.y, 50, 50);
 
-ctx.restore();
+// ctx.restore();
 
 /*
     if (ninja.isTouched === true) {
@@ -125,8 +127,8 @@ ninjaDeathImg.src = "./images/Ninja-Death.png";
 // ---------------------------
 
 var ninja = {
-  x: 600,
-  y: 380,
+  x: 500,
+  y: 400,
   width: 150,
   height: 150,
   isTouched: false,
@@ -151,15 +153,15 @@ var allBees = [
   new Bee(point.x + 100, point.y - 240),
   new Bee(point.x + 150, point.y - 310),
   new Bee(point.x - 100, point.y + 240),
-  new Bee(point.x, point.y + 310),
   new Bee(point.x + 50, point.y - 240),
   new Bee(point.x - 50, point.y + 280),
   new Bee(point.x + 150, point.y + 240),
   new Bee(point.x + 80, point.y + 230),
   new Bee(point.x + 100, point.y - 230),
+  new Bee(point.x + 80, point.y + 230),
+  new Bee(point.x + 100, point.y - 230),
   new Bee(point.x + 10, point.y + 310)
 ];
-
 drawingLoop();
 
 //---------------- MOVEMENT NINJA WITH KEY ----------------------
@@ -275,7 +277,7 @@ function drawingLoop() {
   allBees.forEach(function(oneBee) {
     oneBee.drawBee();
   });
-
+  drawScore();
   checkCollision();
 
   requestAnimationFrame(function() {
@@ -303,8 +305,6 @@ function checkCollision() {
         ninja.isTouched = false;
         oneBee.isKicked = true;
         ninja.kills += 1;
-
-        // score +=1
       } else if (ninjaImg !== ninjaDownImg) {
         ninja.isTouched = true;
         ninja.health -= 1;
@@ -331,5 +331,13 @@ $(".btn-start").click(function() {
   $(".start").addClass("hidden");
 });
 
-//var "Score: " + ninja.kills
-//"Score: 0"
+// ------------ SCORE
+
+function drawScore() {
+  // Drawing TEXT ----------
+  ctx.fillStyle = "white";
+
+  ctx.font = "40px arial";
+  ctx.textBaseline = "middle";
+  ctx.fillText("Score : " + ninja.kills, 800, 40);
+}

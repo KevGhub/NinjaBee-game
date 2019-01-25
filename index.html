@@ -19,14 +19,30 @@
   <body>
     <section class="container start">
       <div class="start-screen row">
-        <button type="button" class="btn-start btn btn-dark">START</button>
+        <div class="top col-12">
+          <div id="ruche" class="col-2"></div>
+          <div id="TitlePage" class="col-8"></div>
+        </div>
+        <div class="bottom col-12">
+          <button type="button" class="btn-start btn btn-dark">START</button>
+        </div>
       </div>
     </section>
-    <div id="ruche"></div>
-    <div id="TitlePage"></div>
+    <div id="ruche2" class="col-2"></div>
     <div id="automat-Bees"></div>
+    <div id="automat-Bees1"></div>
+    <div id="automat-Bees3"></div>
 
-    <canvas class="ninja-bees none" width="1280" height="800"> </canvas>
+    <section class="game-end">
+      <div class="popup-content">
+        <div>
+          <h2>You win</h2>
+          <button>play again</button>
+        </div>
+      </div>
+    </section>
+
+    <canvas class="ninja-bees none" width="1200" height="600"> </canvas>
 
     <!--
      <div class="GameOver-screen row">
