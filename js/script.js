@@ -32,20 +32,8 @@ class Bee {
     if (ninja.health > 0) {
       this.x -= 2.5;
       this.y += 0.5;
-
-      // if (BeeX < 500) {
-      //   BeeX = 1000;
     }
     ctx.drawImage(BeeImg, this.x, this.y, this.width, this.height);
-
-    // if (this.isTouched) {
-    //   ctx.strokeStyle = "orange";
-    //   ctx.lineWidth = 3;
-    // } else {
-    // //   ctx.strokeStyle = "black";
-    //   ctx.lineWidth = 1;
-    // }
-    // ctx.strokeRect(this.x, this.y, 50, 50);
   }
 }
 
@@ -127,7 +115,7 @@ ninjaDeathImg.src = "./images/Ninja-Death.png";
 // ---------------------------
 
 var ninja = {
-  x: 500,
+  x: 100,
   y: 400,
   width: 150,
   height: 150,
@@ -147,14 +135,15 @@ var point = {
 };
 
 var allBees = [
-  new Bee(point.x + 80, point.y - 230),
+  new Bee(point.x + 80, point.y + 930),
+
   new Bee(point.x + 110, point.y - 310),
   new Bee(point.x + 100, point.y + 230),
   new Bee(point.x + 100, point.y - 240),
   new Bee(point.x + 150, point.y - 310),
   new Bee(point.x - 100, point.y + 240),
   new Bee(point.x + 50, point.y - 240),
-  new Bee(point.x - 50, point.y + 280),
+  new Bee(point.x - 10, point.y + 280),
   new Bee(point.x + 150, point.y + 240),
   new Bee(point.x + 80, point.y + 230),
   new Bee(point.x + 100, point.y - 230),
@@ -268,6 +257,7 @@ document.onkeydown = function(event) {
       break;
   }
 };
+drawingLoop();
 
 function drawingLoop() {
   ctx.clearRect(0, 0, 1280, 800); //-- to erase the whole canvas before drawing (x,y, width, height)
@@ -277,6 +267,7 @@ function drawingLoop() {
   allBees.forEach(function(oneBee) {
     oneBee.drawBee();
   });
+
   drawScore();
   checkCollision();
 

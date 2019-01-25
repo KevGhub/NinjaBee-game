@@ -6,6 +6,16 @@
   height: 100vh;
 }
 
+/* #ruche2 {
+  background: url("../images/rucheDroite.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: bounce 0.25s ease infinite alternate;
+  width: 150px;
+  height: 150px;
+} */
+
 .background-screen {
   background-image: url(./images/backgroundGame.png);
   background-position: center;
