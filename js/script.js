@@ -19,10 +19,12 @@ class Bee {
   constructor(BeeX, BeeY) {
     this.x = BeeX;
     this.y = BeeY;
+    this.xStart = BeeX;
+    this.yStart = BeeY;
     this.width = 50;
     this.height = 50;
     this.isTouched = false;
-    this.isKicked = false;
+    // this.isKicked = false;
     this.angle = 0;
 
     // this.strength = strength;
@@ -30,8 +32,8 @@ class Bee {
 
   drawBee() {
     if (ninja.health > 0) {
-      this.x -= 2.5;
-      this.y += 0.5;
+      this.x -= 2;
+      this.y += 0.4;
     }
     ctx.drawImage(BeeImg, this.x, this.y, this.width, this.height);
   }
@@ -39,7 +41,7 @@ class Bee {
 
 //---- Bee Movment
 
-//-------- OPtion 2 movement :
+//-------- OPtion 2 natural bees movement :
 
 // var time = new Date();
 // this.angle +=
@@ -92,24 +94,12 @@ ninjaDownImg.src = "./images/Ninja-Down.png";
 var ninjaDeathImg = new Image();
 ninjaDeathImg.src = "./images/Ninja-Death.png";
 
-// ---------  AUDIO
-// var ninjaTouchedSound = new Audio("./audio/AHOU.mp3");
-// var beeTouchedSound = new Audio("./audio/Bzzz.mp3");
-// var beeTouchedSound2 = new Audio("./audio/blop.mp3");
+// --------- ex. AUDIO
+
 // var kickLeftSound = new Audio("./audio/Coup1.mp3");
 // var kickRightSound = new Audio("./audio/kick.mp3");
-// var ninjaDeathSound = new Audio("./audio/deathsound.mp3");
-// var jumpSound = new Audio("./audio/JUMPsound.mp3");
-// var ninjaDownSound = new Audio("./audio/Downffffiit.mp3");
-//var ambianceSound = new Audio("../audio/ambianceSound.mp3");
 
-// ambianceSound.play();
-// beeTouchedSound2.play();
-// ninjaDownSound.play();
-// jumpSound.play();
-// ambianceSound.play();
 // kickLeftSound.play();
-// ninjaDeathSound.play();
 // kickRightSound.play();
 
 // ---------------------------
@@ -120,7 +110,7 @@ var ninja = {
   width: 150,
   height: 150,
   isTouched: false,
-  health: 3,
+  health: 10,
   kills: 0
 };
 
@@ -141,9 +131,9 @@ var allBees = [
   new Bee(point.x + 100, point.y + 230),
   new Bee(point.x + 100, point.y - 240),
   new Bee(point.x + 150, point.y - 310),
-  new Bee(point.x - 100, point.y + 240),
+  // new Bee(point.x - 100, point.y + 240),
   new Bee(point.x + 50, point.y - 240),
-  new Bee(point.x - 10, point.y + 280),
+  // new Bee(point.x - 10, point.y + 280),
   new Bee(point.x + 150, point.y + 240),
   new Bee(point.x + 80, point.y + 230),
   new Bee(point.x + 100, point.y - 230),
@@ -151,6 +141,7 @@ var allBees = [
   new Bee(point.x + 100, point.y - 230),
   new Bee(point.x + 10, point.y + 310)
 ];
+
 drawingLoop();
 
 //---------------- MOVEMENT NINJA WITH KEY ----------------------
@@ -191,16 +182,16 @@ document.onkeydown = function(event) {
       ninjaImg = ninjaJumpImg;
       ninja.y -= 70;
 
-      setTimeout(suiteUPTraitement1, 100);
+      setTimeout(suiteUPTraitement1, 90);
       function suiteUPTraitement1() {
         ninja.y -= 40;
       }
 
-      setTimeout(suiteUPTraitement2, 150);
+      setTimeout(suiteUPTraitement2, 140);
       function suiteUPTraitement2() {
         ninja.y -= 20;
       }
-      setTimeout(suiteUPTraitement3, 175);
+      setTimeout(suiteUPTraitement3, 165);
       function suiteUPTraitement3() {
         ninja.y -= 10;
       }
@@ -267,9 +258,10 @@ function drawingLoop() {
   allBees.forEach(function(oneBee) {
     oneBee.drawBee();
   });
-
+  drawHealt();
   drawScore();
   checkCollision();
+  replaceBees();
 
   requestAnimationFrame(function() {
     drawingLoop();
@@ -289,12 +281,23 @@ HitCollision(a, b) {
 }
 // test : rectangleCollision(celine,pipe1) : is false, false, but when it touch become true
 
+function replaceBees() {
+  allBees.forEach(oneBee => {
+    if (oneBee.x < -50) {
+      oneBee.x = oneBee.xStart;
+      oneBee.y = oneBee.yStart;
+    }
+  });
+}
+
 function checkCollision() {
   allBees.forEach(function(oneBee) {
     if (HitCollision(ninja, oneBee)) {
       if (ninjaImg === ninjaLeftImg || ninjaImg === ninjaRightImg) {
         ninja.isTouched = false;
-        oneBee.isKicked = true;
+        // oneBee.isKicked = true;
+        oneBee.x = oneBee.xStart;
+        oneBee.y = oneBee.yStart;
         ninja.kills += 1;
       } else if (ninjaImg !== ninjaDownImg) {
         ninja.isTouched = true;
@@ -312,9 +315,9 @@ function checkCollision() {
     }
   });
 
-  allBees = allBees.filter(function(oneBee) {
-    return !oneBee.isKicked;
-  });
+  // allBees = allBees.filter(function(oneBee) {
+  //   return !oneBee.isKicked;
+  // });
 }
 
 //-----------
@@ -328,7 +331,16 @@ function drawScore() {
   // Drawing TEXT ----------
   ctx.fillStyle = "white";
 
-  ctx.font = "40px arial";
+  ctx.font = "35px verdana";
   ctx.textBaseline = "middle";
-  ctx.fillText("Score : " + ninja.kills, 800, 40);
+  ctx.fillText("Score : " + ninja.kills, 890, 40);
+}
+
+function drawHealt() {
+  // Drawing TEXT ----------
+  ctx.fillStyle = "red";
+
+  ctx.font = "35px verdana";
+  ctx.textBaseline = "middle";
+  ctx.fillText("Life : " + ninja.health, 150, 40);
 }
